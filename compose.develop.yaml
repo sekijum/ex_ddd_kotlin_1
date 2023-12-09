@@ -1,0 +1,52 @@
+version: '3.8'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+    ports:
+      - 8080:8080
+    tty: true
+    init: true
+    volumes:
+      - ./:/var/www:cached
+      - vscode_server_volume:/root/.vscode-server
+    command: sleep infinity
+    networks:
+      net1:
+        ipv4_address: 192.168.10.20
+networks:
+  net1:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
+volumes:
+  vscode_server_volume:
+    driver: local
