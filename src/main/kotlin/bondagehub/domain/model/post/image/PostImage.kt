@@ -11,6 +11,7 @@ class PostImage(
     val id: Long, // 主キー
     val postId: PostId, // 投稿ID
     val title: String, // 投稿のタイトル
+    val description: String? = null, // 投稿の説明
     val imageId: Long, // 画像ID
     val createdAt: Instant, // 投稿日時
     val updatedAt: Instant, // 更新日時

@@ -3,7 +3,6 @@ package bondagehub.presentation.configuration
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.spring.SpringTransactionManager
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -18,14 +17,12 @@ import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.builders.PathSelectors
 import javax.sql.DataSource
 
-private typealias PlatformDataSource = HikariDataSource
-
 @Configuration
 @EnableTransactionManagement
 class ExposedConfiguration(val dataSource: DataSource) {
 
     @Bean
-    fun transactionManager(dataSource: PlatformDataSource): SpringTransactionManager =
+    fun transactionManager(dataSource: DataSource): SpringTransactionManager =
         SpringTransactionManager(dataSource)
 
     @Bean

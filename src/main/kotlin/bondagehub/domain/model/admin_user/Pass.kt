@@ -4,8 +4,7 @@ import bondagehub.domain.model.*
 import java.security.MessageDigest
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
-import bondagehub.domain.model.exception.*
-import bondagehub.domain.model.admin_user.Email
+import bondagehub.domain.exception.*
 
 /**
  * 管理者のパスワードを表現する。

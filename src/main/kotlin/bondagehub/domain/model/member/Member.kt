@@ -15,6 +15,7 @@ class Member(
     val pass: Pass, // 会員ユーザーのパスワード
     val status: MemberStatus, // 会員ユーザーステータス
     val email: Email? = null, // 会員ユーザーのメールアドレス
+    val emailVerifiedAt: Instant? = null, // メール認証日時
     val deletedAt: Instant? = null, // 削除日時
     val createdAt: Instant, // 登録日時
     val updatedAt: Instant, // 更新日時

@@ -1,7 +1,7 @@
 package bondagehub.domain.model.member
 
 import bondagehub.domain.model.*
-import bondagehub.domain.model.exception.*
+import bondagehub.domain.exception.*
 
 /**
  * 会員ユーザーのメールアドレスを表現する。
@@ -26,5 +26,8 @@ class Email private constructor(value: String) : SomeValueObject<Email, String>(
             .takeIf { LENGTH_RANGE.contains(it.length) }
             ?.let { Email(it) }
             ?: throw InvalidRequestException("Email must be 100 characters or less.")
+
+
+        fun from(value: String): Email = Email(value)
     }
 }

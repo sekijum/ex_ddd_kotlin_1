@@ -1,16 +1,13 @@
-package bondagehub.domain.model.category
+package bondagehub.domain.model.post.tag
 
 import java.time.Instant
 
-/**
- * カテゴリーを表現する。
- */
-class Category(
+class PostTag(
     val id: Long, // 投稿の主キー
     val name: String, // タグの名前
     val description: String?, // タグの説明
     val slug: String, // URLスラッグ
-    val createdAt: Instant, // 作成日時
+    val createdAt: Instant, // 投稿日時
     val updatedAt: Instant, // 更新日時
 ) {
 
@@ -20,8 +17,8 @@ class Category(
             name: String,
             description: String?,
             slug: String,
-        ): Category = with(Instant.now()) {
-            Category(
+        ): PostTag = with(Instant.now()) {
+            PostTag(
                 id = 0,
                 name = name,
                 description = description,

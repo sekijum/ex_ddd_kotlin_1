@@ -1,10 +1,10 @@
 package bondagehub.domain.model.member
 
 import bondagehub.domain.model.*
+import bondagehub.domain.exception.*
 import java.security.MessageDigest
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
-import bondagehub.domain.model.exception.*
 
 /**
  * 会員ユーザーのパスワードを表現する。

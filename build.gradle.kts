@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    id ("idea")
     id("org.springframework.boot") version "3.1.1"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.22"
@@ -23,7 +24,7 @@ repositories {
 dependencies {
     // springDependencies
     implementation("org.springframework.boot:spring-boot-starter-web")
-    runtimeOnly("org.springframework.boot:spring-boot-devtools")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework:spring-tx")
 
@@ -48,12 +49,8 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.7")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.7")
 
-    // flywayDependencies
-    implementation("org.flywaydb:flyway-core:9.8.1")
-
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("io.projectreactor:reactor-core")
-    implementation("com.zaxxer:HikariCP")
 }
 
 tasks {

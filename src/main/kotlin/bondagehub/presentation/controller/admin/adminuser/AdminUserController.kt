@@ -32,7 +32,7 @@ class AdminUserController(private val adminUserService: AdminUserService) {
         @ModelAttribute request: AdminUserFindAllRequest
     ): Mono<AdminUserResponses> {
         val command = FindAllAdminUserCommand(
-            request.limit, 
+            request.limit,
             request.offset
         )
         return adminUserService.findAll(command)

@@ -8,14 +8,9 @@ import bondagehub.domain.model.admin_user.*
 interface AdminUserRepository {
 
     fun findById(id: Long, lock: Boolean = false): AdminUser
-
     fun findAll(limit: Int, offset: Int): List<AdminUser>
-
     fun count(): Int
-
-    fun add(adminUser: AdminUser)
-
-    fun set(adminUser: AdminUser)
-
-    fun remove(adminUser: AdminUser)
+    fun create(adminUser: AdminUser)
+    fun update(adminUser: AdminUser)
+    fun delete(adminUser: AdminUser)
 }

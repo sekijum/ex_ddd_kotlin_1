@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 @Repository
-class AdminUserDataSource : AdminUserRepository {
+class AdminUserDataSource: AdminUserRepository {
 
     override fun findById(id: Long, lock: Boolean): AdminUser =
         AdminUsersTable.select { AdminUsersTable.id eq id }
@@ -27,7 +27,7 @@ class AdminUserDataSource : AdminUserRepository {
     override fun count(): Int =
         AdminUsersTable.selectAll().count().toInt()
 
-    override fun add(adminUser: AdminUser) {
+    override fun create(adminUser: AdminUser) {
         AdminUsersTable.insert {
             it[id] = adminUser.id
             it[name] = adminUser.name.value()
@@ -38,7 +38,7 @@ class AdminUserDataSource : AdminUserRepository {
         }
     }
 
-    override fun set(adminUser: AdminUser) {
+    override fun update(adminUser: AdminUser) {
         AdminUsersTable.update({ AdminUsersTable.id eq adminUser.id }) {
             it[name] = adminUser.name.value()
             it[email] = adminUser.email.value()
@@ -48,7 +48,7 @@ class AdminUserDataSource : AdminUserRepository {
             ?: throw UpdateFailedException("AdminUser($adminUser.id)")
     }
 
-    override fun remove(adminUser: AdminUser) {
+    override fun delete(adminUser: AdminUser) {
         AdminUsersTable.deleteWhere { AdminUsersTable.id eq adminUser.id }
             .takeIf { it > 0 }
             ?: throw DeleteFailedException("AdminUser($adminUser.id)")

@@ -50,7 +50,7 @@ class AdminUserService(
 
         val created = AdminUser
             .create(name, email, pass)
-            .also { adminUserRepository.add(it) }
+            .also { adminUserRepository.create(it) }
 
         return Mono.just(created)
             .onErrorResume { Mono.error(it.error()) }
@@ -67,7 +67,7 @@ class AdminUserService(
         val updated = adminUserRepository
             .findById(id, lock = true)
             .update(name, email)
-            .also { adminUserRepository.set(it) }
+            .also { adminUserRepository.update(it) }
 
         return Mono.just(updated)
             .onErrorResume { Mono.error(it.error()) }
@@ -81,7 +81,7 @@ class AdminUserService(
 
         val deleted = adminUserRepository
             .findById(id, lock = true)
-            .also { adminUserRepository.remove(it) }
+            .also { adminUserRepository.delete(it) }
 
         return Mono.just(deleted)
             .onErrorResume { Mono.error(it.error()) }

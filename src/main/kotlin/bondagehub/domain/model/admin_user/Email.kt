@@ -1,7 +1,7 @@
 package bondagehub.domain.model.admin_user
 
 import bondagehub.domain.model.*
-import bondagehub.domain.model.exception.*
+import bondagehub.domain.exception.*
 
 /**
  * 管理者のメールアドレスを表現する。

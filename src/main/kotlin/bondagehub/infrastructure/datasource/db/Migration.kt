@@ -24,6 +24,17 @@ class Migration {
         val tables = arrayOf(
             AdminUsersTable,
             AttachmentsTable,
+            PostCategoriesTable,
+            PostTagsTable,
+            MembersTable,
+            MemberDetailsTable,
+            PostsTable,
+            PostVideosTable,
+            PostImagesTable,
+            PostAlbumsTable,
+            PostAlbumImagesTable,
+            PostCategoryCategorizationTable,
+            PostTagTaggingTable
         ).also {
             transaction {
                 SchemaUtils.create(*it)

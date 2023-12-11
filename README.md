@@ -1,5 +1,20 @@
 # bondagehub-backend
 
+### 起動
+```
+docker-compose -f compose.develop.yaml exec backend
+```
+
+### ビルド
+```
+docker-compose -f compose.develop.yaml backend ./gradlew build
+```
+
+### 終了
+```
+docker-compose -f compose.develop.yaml down
+```
+
 kotlinでドメイン駆動設計＋クリーンアーキテクチャのサンプル
 
 - [Spring Boot](https://github.com/spring-projects/spring-boot)
@@ -24,3 +39,5 @@ kotlinでドメイン駆動設計＋クリーンアーキテクチャのサン�
 | adapter  | Interface Adapters         | REST APIを用いた外部からのリクエストやデータベースのような外部接続といった外界と内部のレイヤーの連携する役割を果たすレイヤー。 |
 | external | Frameworks & Drivers       | 外界との境界ににあり相互に通信する役割を果たすレイヤー。Webフレームワークやデータベースなどに関連するコードを配置する。       |
 # bondagehub-backend
+
+- https://retheviper.github.io/posts/exposed-mapping-record-to-object/

@@ -1,7 +1,7 @@
 package bondagehub.domain.model.member
 
 import bondagehub.domain.model.*
-import bondagehub.domain.model.exception.*
+import bondagehub.domain.exception.*
 
 /**
  * 会員ユーザーの氏名または会社名を表現する。

@@ -1,11 +1,11 @@
 package bondagehub.domain.model.post
 
 import bondagehub.domain.model.Entity
-import bondagehub.domain.model.category.*
-import bondagehub.domain.model.tag.*
 import bondagehub.domain.model.member.*
 import bondagehub.domain.model.post.video.*
 import bondagehub.domain.model.post.album.*
+import bondagehub.domain.model.post.category.*
+import bondagehub.domain.model.post.tag.*
 import bondagehub.domain.model.post.image.PostImage
 import java.time.Instant
 
@@ -20,13 +20,13 @@ class Post(
     val createdAt: Instant, // 投稿日時
     val updatedAt: Instant, // 更新日時
 
-    val categories: List<Category>? = null,
+    val categories: List<PostCategory>? = null,
     val categoryIds: List<Long>? = null,
-    val tags: List<Tag>? = null,
+    val tags: List<PostTag>? = null,
     val tagIds: List<Long>? = null,
     val member: Member? = null,
-    val video: PostVideo? = null,
     val album: PostAlbum? = null,
+    val video: PostVideo? = null,
     val image: PostImage? = null,
 ): Entity<Post> {
 

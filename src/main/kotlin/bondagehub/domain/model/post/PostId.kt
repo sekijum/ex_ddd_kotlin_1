@@ -2,7 +2,7 @@ package bondagehub.domain.model.post
 
 import bondagehub.domain.model.*
 import java.util.*
-import bondagehub.domain.model.exception.*
+import bondagehub.domain.exception.*
 
 /**
  * 管理者のIDを表現する。

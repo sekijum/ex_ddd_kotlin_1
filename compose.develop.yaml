@@ -1,42 +1,19 @@
 version: '3.8'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 services:
   backend:
     container_name: backend
     build:
       context: .
       dockerfile: docker/backend/Dockerfile
+      target: dev
     ports:
       - 8080:8080
     tty: true
     init: true
+    privileged: true
+    restart: always
     volumes:
       - ./:/var/www:cached
-      - vscode_server_volume:/root/.vscode-server
-    command: sleep infinity
     networks:
       net1:
         ipv4_address: 192.168.10.20

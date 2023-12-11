@@ -1,23 +1,21 @@
 package bondagehub.domain.model.post
 
-enum class PostType(private val value: Long) {
+import bondagehub.domain.exception.*
 
-    /**
-     * アルバム
-     */
-    Album(1),
+enum class PostType(val type: Int, val label: String) {
 
-    /**
-     * 動画
-     *
-     * 未来の日付に公開を予定されている場合。
-     */
-    Video(2),
+    Album(1, "アルバム"),
+    Video(2, "動画"),
+    Image(3, "画像");
 
-    /**
-     * 単体画像
-     *
-     * 未完成の投稿。
-     */
-    Image(3),
+    companion object {
+//        fun from(status: String): PostType = PostType.values().first { it.name == status }
+//        fun from(status: Int): PostType = PostType.values().first { it.status == status }
+
+        operator fun invoke(type: Int) = PostType.values().find { it.type == type }
+            ?: throw InvalidRequestException("無効なステータスです。")
+
+        operator fun invoke(type: String) = PostType.values().find { it.name == type }
+            ?: throw InvalidRequestException("無効なステータスです。")
+    }
 }

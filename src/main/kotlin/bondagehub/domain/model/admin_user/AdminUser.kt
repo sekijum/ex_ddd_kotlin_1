@@ -11,9 +11,9 @@ import java.time.Instant
  */
 class AdminUser(
     val id: Long, // 主キー
-    val name: Name, // 管理者名
+    val name: Name, // 管理者の名前
     val email: Email, // 管理者メールアドレス
-    val pass: Pass, // 会員ユーザーパスワード
+    val pass: Pass, // 管理者パスワード
     val createdAt: Instant, // 作成日時
     val updatedAt: Instant, // 更新日時
 ) : Entity<AdminUser> {

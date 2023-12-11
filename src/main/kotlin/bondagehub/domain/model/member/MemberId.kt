@@ -2,7 +2,7 @@ package bondagehub.domain.model.member
 
 import bondagehub.domain.model.SomeIdentity
 import java.util.UUID
-import bondagehub.domain.model.exception.*
+import bondagehub.domain.exception.*
 
 /**
  * 会員のIDを表現する。

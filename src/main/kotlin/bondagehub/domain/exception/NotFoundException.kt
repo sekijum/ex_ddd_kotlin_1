@@ -5,7 +5,7 @@ package bondagehub.domain.exception
  */
 class NotFoundException(
     value: String,
-    override val message: String = "$value not found.",
+    override val message: String = "$value is not found.",
     cause: Throwable? = null
 ) : RuntimeException(message, cause) {
 
