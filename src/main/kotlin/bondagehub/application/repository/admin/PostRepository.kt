@@ -8,4 +8,5 @@ import bondagehub.domain.model.post.*
 interface PostRepository {
 
     fun findAll(limit: Int, offset: Int): List<Post>
+    fun count(): Int
 }

@@ -26,8 +26,5 @@ class Email private constructor(value: String) : SomeValueObject<Email, String>(
             .takeIf { LENGTH_RANGE.contains(it.length) }
             ?.let { Email(it) }
             ?: throw InvalidRequestException("Email must be 100 characters or less.")
-
-
-        fun from(value: String): Email = Email(value)
     }
 }

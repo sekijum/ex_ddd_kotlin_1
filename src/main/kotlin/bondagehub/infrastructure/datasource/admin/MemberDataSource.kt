@@ -11,9 +11,12 @@ import org.jetbrains.exposed.sql.selectAll
 class MemberDataSource: MemberRepository {
 
     override fun findAll(limit: Int, offset: Int): List<Member> =
-        MembersTable.selectAll()
+         MembersTable.leftJoin(PostsTable)
+             .slice(MembersTable.columns)
+            .selectAll()
             .orderBy(MembersTable.createdAt)
             .limit(limit, offset = offset.toLong() * limit.toLong())
+            .groupBy(PostsTable.id)
             .map { it.rowToModel() }
 
     private fun ResultRow.rowToModel(): Member =
@@ -22,7 +25,7 @@ class MemberDataSource: MemberRepository {
             Name.valueOf(this[MembersTable.name]),
             Pass.from(this[MembersTable.pass]),
             MemberStatus(this[MembersTable.status]),
-            this[MembersTable.email]?.let { Email.from(it) },
+            this[MembersTable.email]?.let { Email.valueOf(it) },
             this[MembersTable.emailVerifiedAt],
             this[MembersTable.deletedAt],
             this[MembersTable.createdAt],
