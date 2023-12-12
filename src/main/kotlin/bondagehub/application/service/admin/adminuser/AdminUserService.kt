@@ -1,6 +1,6 @@
 package bondagehub.application.service.admin.adminuser
 
-import bondagehub.domain.model.admin_user.*
+import bondagehub.domain.model.adminuser.*
 import bondagehub.domain.exception.*
 import bondagehub.application.repository.admin.AdminUserRepository
 import bondagehub.application.service.admin.adminuser.command.*

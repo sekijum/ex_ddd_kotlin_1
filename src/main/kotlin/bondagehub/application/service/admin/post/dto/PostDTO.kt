@@ -1,10 +1,5 @@
 package bondagehub.application.service.admin.post.dto
 
-import bondagehub.domain.model.post.*
-
-/**
- * 管理者([Post])のDTO。
- */
 data class PostDTO(
     val id: String,
     val typeLabel: String,

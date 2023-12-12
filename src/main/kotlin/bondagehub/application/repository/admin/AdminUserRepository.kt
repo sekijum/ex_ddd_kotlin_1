@@ -1,6 +1,6 @@
 package bondagehub.application.repository.admin
 
-import bondagehub.domain.model.admin_user.*
+import bondagehub.domain.model.adminuser.*
 
 /**
  * 管理者を操作するためのリポジトリを表現する。

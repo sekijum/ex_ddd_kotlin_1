@@ -1,4 +1,4 @@
-package bondagehub.domain.model.admin_user
+package bondagehub.domain.model.adminuser
 
 import bondagehub.domain.model.*
 import java.time.Instant

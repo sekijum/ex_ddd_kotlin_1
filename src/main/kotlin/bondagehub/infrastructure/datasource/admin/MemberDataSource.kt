@@ -2,8 +2,6 @@ package bondagehub.infrastructure.datasource.admin
 
 import bondagehub.application.repository.admin.MemberRepository
 import bondagehub.domain.model.member.*
-import bondagehub.domain.model.post.PostId
-import bondagehub.domain.model.post.category.PostCategory
 import bondagehub.infrastructure.datasource.db.migration.*
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll

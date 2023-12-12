@@ -1,6 +1,6 @@
 package bondagehub.application.repository.admin
 
-import bondagehub.domain.model.post.category.*
+import bondagehub.domain.model.postcategory.*
 
 /**
  * 投稿カテゴリーを操作するためのリポジトリを表現する。

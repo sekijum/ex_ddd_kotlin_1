@@ -1,6 +1,6 @@
 package bondagehub.application.service.admin.adminuser.dto
 
-import bondagehub.domain.model.admin_user.*
+import bondagehub.domain.model.adminuser.*
 
 /**
  * 管理者([AdminUser])のDTO。

@@ -1,7 +1,6 @@
 package bondagehub.application.service.admin.post
 
 import bondagehub.domain.exception.*
-import bondagehub.domain.model.post.*
 import bondagehub.application.repository.admin.PostRepository
 import bondagehub.application.service.*
 import bondagehub.application.service.admin.post.command.FindAllPostCommand
@@ -11,9 +10,6 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Mono
 
-/**
- * 投稿([Post])ドメインの操作を提供するアプリケーションサービス。
- */
 @Service
 class PostService(
     private val postRepository: PostRepository,

@@ -4,8 +4,8 @@ import bondagehub.domain.model.Entity
 import bondagehub.domain.model.member.*
 import bondagehub.domain.model.post.video.*
 import bondagehub.domain.model.post.album.*
-import bondagehub.domain.model.post.category.*
-import bondagehub.domain.model.post.tag.*
+import bondagehub.domain.model.postcategory.*
+import bondagehub.domain.model.posttag.*
 import bondagehub.domain.model.post.image.PostImage
 import java.time.Instant
 

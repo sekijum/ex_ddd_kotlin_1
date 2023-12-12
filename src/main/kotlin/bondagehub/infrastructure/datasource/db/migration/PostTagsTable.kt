@@ -1,7 +1,7 @@
 package bondagehub.infrastructure.datasource.db.migration
 
 import bondagehub.infrastructure.datasource.db.*
-import bondagehub.domain.model.post.tag.*
+import bondagehub.domain.model.posttag.*
 
 object PostTagsTable : ExposedTable<PostTag>("post_tags") {
 

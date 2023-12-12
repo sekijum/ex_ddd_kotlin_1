@@ -1,6 +1,6 @@
 package bondagehub.application.service.admin.adminuser.dto
 
-import bondagehub.domain.model.admin_user.*
+import bondagehub.domain.model.adminuser.*
 import bondagehub.application.service.*
 import org.springframework.stereotype.Component
 

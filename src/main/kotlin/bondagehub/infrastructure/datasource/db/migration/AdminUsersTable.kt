@@ -1,6 +1,6 @@
 package bondagehub.infrastructure.datasource.db.migration
 
-import bondagehub.domain.model.admin_user.*
+import bondagehub.domain.model.adminuser.*
 import bondagehub.infrastructure.datasource.db.*
 
 object AdminUsersTable : ExposedTable<AdminUser>("admin-users") {

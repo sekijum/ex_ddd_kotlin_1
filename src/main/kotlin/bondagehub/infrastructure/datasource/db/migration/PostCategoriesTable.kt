@@ -1,6 +1,6 @@
 package bondagehub.infrastructure.datasource.db.migration
 
-import bondagehub.domain.model.post.category.*
+import bondagehub.domain.model.postcategory.*
 import bondagehub.infrastructure.datasource.db.*
 
 object PostCategoriesTable : ExposedTable<PostCategory>("post_categories") {

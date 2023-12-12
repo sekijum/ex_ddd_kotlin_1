@@ -1,7 +1,7 @@
 package bondagehub.infrastructure.datasource.admin
 
 import bondagehub.application.repository.admin.PostTagRepository
-import bondagehub.domain.model.post.tag.*
+import bondagehub.domain.model.posttag.*
 import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
 import bondagehub.infrastructure.datasource.db.migration.PostTagsTable
 import org.jetbrains.exposed.sql.ResultRow

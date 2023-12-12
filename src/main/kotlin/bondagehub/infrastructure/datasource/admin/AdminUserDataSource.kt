@@ -1,6 +1,6 @@
 package bondagehub.infrastructure.datasource.admin
 
-import bondagehub.domain.model.admin_user.*
+import bondagehub.domain.model.adminuser.*
 import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
 import bondagehub.application.repository.admin.*
 import bondagehub.domain.exception.*

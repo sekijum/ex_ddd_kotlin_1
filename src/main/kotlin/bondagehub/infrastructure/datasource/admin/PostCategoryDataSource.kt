@@ -1,7 +1,7 @@
 package bondagehub.infrastructure.datasource.admin
 
 import bondagehub.application.repository.admin.PostCategoryRepository
-import bondagehub.domain.model.post.category.PostCategory
+import bondagehub.domain.model.postcategory.*
 import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
 import bondagehub.infrastructure.datasource.db.migration.PostCategoriesTable
 import bondagehub.infrastructure.datasource.db.migration.PostTagsTable

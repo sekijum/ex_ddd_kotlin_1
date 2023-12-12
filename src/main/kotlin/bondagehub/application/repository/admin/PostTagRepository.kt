@@ -1,6 +1,6 @@
 package bondagehub.application.repository.admin
 
-import bondagehub.domain.model.post.tag.*
+import bondagehub.domain.model.posttag.*
 
 /**
  * 会員タグを操作するためのリポジトリを表現する。
