@@ -27,3 +27,4 @@ logging:
   level:
     Exposed: INFO
     web: DEBUG
+    root: INFO

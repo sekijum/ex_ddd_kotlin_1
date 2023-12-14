@@ -18,6 +18,13 @@ class AdminUserPresenter {
         )
     }
 
+    fun toDTO(adminUsers: List<AdminUser>, count: Int): Pair<List<AdminUserDTO>, Int> {
+        return Pair(
+            adminUsers.map { toDTO(it) },
+            count
+        )
+    }
+
     fun toDTO(adminUsers: List<AdminUser>, count: Int, limit: Int, offset: Int): PaginationDTO<AdminUserDTO> {
         return PaginationDTO(
             count,

@@ -6,6 +6,7 @@ import bondagehub.application.repository.admin.AdminUserRepository
 import bondagehub.application.service.admin.adminuser.command.*
 import bondagehub.application.service.admin.adminuser.dto.*
 import bondagehub.application.service.*
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Mono
@@ -20,37 +21,43 @@ class AdminUserService(
 ) {
 
     @Transactional(readOnly = true)
-     fun findById(command: FindAdminUserCommand): Mono<AdminUserDTO> = runCatching {
+     fun findOneById(command: FindOneByIdAdminUserCommand): Mono<AdminUserDTO> = runCatching {
 
-        return Mono.just(adminUserRepository.findById(command.id))
+        return Mono.just(adminUserRepository.findOneById(command.id))
             .onErrorResume { Mono.error(it.error()) }
         .map { adminUserPresenter.toDTO(it) }
     }
         .getOrElse { Mono.error(it.error()) }
 
     @Transactional(readOnly = true)
-     fun findAll(command: FindAllAdminUserCommand): Mono<PaginationDTO<AdminUserDTO>> = runCatching {
-        return Mono.just(adminUserRepository.count() to adminUserRepository.findAll(command.limit, command.offset))
-            .map { (count, adminUsers) ->
-                adminUserPresenter.toDTO(
-                    adminUsers,
-                    count,
-                    command.limit,
-                    command.offset
-                )
+     fun findAllByQuery(): Mono<List<AdminUserDTO>> = runCatching {
+        return Mono.just(adminUserRepository.findAllByQuery())
+            .map { adminUsers ->
+                adminUsers.map { adminUserPresenter.toDTO(it) }
             }
     }
         .getOrElse { Mono.error(it.error()) }
 
+
+    @Transactional(readOnly = true)
+    fun findPageByQuery(pageable: Pageable): Mono<Pair<Int, List<AdminUserDTO>>> = runCatching {
+        return Mono.just(adminUserRepository.count() to adminUserRepository.findPageByQuery(pageable))
+            .map { (count, adminUsers) ->
+                Pair(count, adminUsers.map { adminUserPresenter.toDTO(it) })
+            }
+
+    }
+        .getOrElse { Mono.error(it.error()) }
+
     @Transactional(timeout = TRANSACTIONAL_TIMEOUT_SECONDS, rollbackFor = [Exception::class])
-     fun create(command: CreateAdminUserCommand): Mono<AdminUserDTO> = runCatching {
+     fun createOne(command: CreateOneAdminUserCommand): Mono<AdminUserDTO> = runCatching {
         val name = Name.valueOf(command.name)
         val email = Email.valueOf(command.email)
         val pass = Pass.valueOf(command.pass, email)
 
         val created = AdminUser
             .create(name, email, pass)
-            .also { adminUserRepository.create(it) }
+            .also { adminUserRepository.createOne(it) }
 
         return Mono.just(created)
             .onErrorResume { Mono.error(it.error()) }
@@ -59,15 +66,15 @@ class AdminUserService(
         .getOrElse { Mono.error(it.error()) }
 
     @Transactional(timeout = TRANSACTIONAL_TIMEOUT_SECONDS, rollbackFor = [Exception::class])
-     fun update(command: UpdateAdminUserCommand): Mono<AdminUserDTO> = runCatching {
+     fun updateOneById(command: UpdateOneByIdAdminUserCommand): Mono<AdminUserDTO> = runCatching {
         val id = command.id
         val name = command.name?.let { Name.valueOf(it) }
         val email = command.email?.let { Email.valueOf(it) }
 
         val updated = adminUserRepository
-            .findById(id, lock = true)
+            .findOneById(id, lock = true)
             .update(name, email)
-            .also { adminUserRepository.update(it) }
+            .also { adminUserRepository.updateOneById(it) }
 
         return Mono.just(updated)
             .onErrorResume { Mono.error(it.error()) }
@@ -76,12 +83,12 @@ class AdminUserService(
         .getOrElse { Mono.error(it.error()) }
 
     @Transactional(timeout = TRANSACTIONAL_TIMEOUT_SECONDS, rollbackFor = [Exception::class])
-     fun delete(command: DeleteAdminUserCommand): Mono<AdminUserDTO> = runCatching {
+     fun deleteOneById(command: DeleteOneByIdAdminUserCommand): Mono<AdminUserDTO> = runCatching {
         val id = command.id
 
         val deleted = adminUserRepository
-            .findById(id, lock = true)
-            .also { adminUserRepository.delete(it) }
+            .findOneById(id, lock = true)
+            .also { adminUserRepository.deleteOneById(it) }
 
         return Mono.just(deleted)
             .onErrorResume { Mono.error(it.error()) }

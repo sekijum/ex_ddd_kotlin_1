@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty
 /**
  * 管理者更新時のリクエスト情報。
  */
-data class AdminUserUpdateRequest(
+data class AdminUserUpdateOneByIdRequest(
     @ApiModelProperty(
         value = "管理者の氏名または会社名", example = "あいうえお", required = false, position = 1
     )

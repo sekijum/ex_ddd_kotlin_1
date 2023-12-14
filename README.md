@@ -13,6 +13,7 @@ docker-compose -f compose.develop.yaml down
 ### 参考
 - https://enterprisecraftsmanship.com/posts/modeling-relationships-in-ddd-way
 - https://terasolunaorg.github.io/guideline/public_review/ImplementationAtEachLayer/DomainLayer.html
+- https://blog.pepese.com/design-rest-api/
 
 # コーディングルール
 

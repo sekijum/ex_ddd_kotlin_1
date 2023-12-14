@@ -6,7 +6,9 @@ import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
 import bondagehub.infrastructure.datasource.db.migration.PostTagsTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
+import org.springframework.stereotype.Repository
 
+@Repository
 class PostTagDataSource: PostTagRepository {
 
     override fun findAll(limit: Int, offset: Int): List<PostTag> =
@@ -15,13 +17,16 @@ class PostTagDataSource: PostTagRepository {
             .limit(limit, offset = offset.toLong() * limit.toLong())
             .map { it.rowToModel() }
 
+    override fun count(): Int =
+        PostTagsTable.selectAll().count().toInt()
+
     private fun ResultRow.rowToModel(): PostTag =
         PostTag(
             this[PostTagsTable.id],
             this[PostTagsTable.name],
             this[PostTagsTable.description],
             this[PostTagsTable.slug],
-            this[AdminUsersTable.createdAt],
-            this[AdminUsersTable.updatedAt]
+            this[PostTagsTable.createdAt],
+            this[PostTagsTable.updatedAt]
         )
 }

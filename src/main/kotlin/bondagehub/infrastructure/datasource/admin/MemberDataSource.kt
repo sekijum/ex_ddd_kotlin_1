@@ -5,7 +5,9 @@ import bondagehub.domain.model.member.*
 import bondagehub.infrastructure.datasource.db.migration.*
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
+import org.springframework.stereotype.Repository
 
+@Repository
 class MemberDataSource: MemberRepository {
 
     override fun findAll(limit: Int, offset: Int): List<Member> =
@@ -16,6 +18,9 @@ class MemberDataSource: MemberRepository {
             .limit(limit, offset = offset.toLong() * limit.toLong())
             .groupBy(PostsTable.id)
             .map { it.rowToModel() }
+
+    override fun count(): Int =
+        MembersTable.selectAll().count().toInt()
 
     private fun ResultRow.rowToModel(): Member =
         Member(

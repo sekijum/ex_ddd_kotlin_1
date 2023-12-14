@@ -5,13 +5,13 @@ import io.swagger.annotations.ApiModelProperty
 /**
  * 管理者作成時のリクエスト情報。
  */
-data class AdminUserCreateRequest(
+data class AdminUserCreateOneRequest(
     @ApiModelProperty(
         value = "管理者の氏名または会社名", example = "あいうえお", required = true, position = 1
     )
     val name: String,
     @ApiModelProperty(
-        value = "管理者の発音", example = "アイウエオ", required = true, position = 2
+        value = "管理者のメールアドレス", example = "アイウエオ", required = true, position = 2
     )
     val email: String,
     @ApiModelProperty(

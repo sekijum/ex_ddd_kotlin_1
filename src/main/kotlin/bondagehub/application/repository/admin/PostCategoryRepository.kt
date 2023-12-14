@@ -8,4 +8,5 @@ import bondagehub.domain.model.postcategory.*
 interface PostCategoryRepository {
 
     fun findAll(limit: Int, offset: Int): List<PostCategory>
+    fun count(): Int
 }

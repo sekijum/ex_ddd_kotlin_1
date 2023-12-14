@@ -3,27 +3,27 @@ package bondagehub.domain.model.member
 import bondagehub.domain.exception.InvalidRequestException
 import bondagehub.domain.model.post.PostType
 
-enum class MemberStatus(private val status: Int) {
+enum class MemberStatus(val status: Int, val label: String) {
 
     /**
      * 有効
      */
-    Active(1),
+    Active(1, "有効"),
 
     /**
      * 退会済
      */
-    Withdrawn(7),
+    Withdrawn(7, "退会済"),
 
     /**
      * 凍結(復活あり)
      */
-    Suspended(8),
+    Suspended(8, "凍結"),
 
     /**
      * 無効
      */
-    Inactive(9);
+    Inactive(9, "無効");
 
 
     companion object {

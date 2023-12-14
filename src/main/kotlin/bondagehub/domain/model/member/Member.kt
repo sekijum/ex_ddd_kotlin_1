@@ -89,7 +89,7 @@ class Member(
                 name,
                 pass,
                 status = MemberStatus.Active,
-                email = email ?: null,
+                email = email,
                 memberDetail = memberDetail,
                 createdAt = this,
                 updatedAt = this

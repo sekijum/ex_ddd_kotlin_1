@@ -7,27 +7,37 @@ import bondagehub.domain.exception.*
 import org.jetbrains.exposed.sql.*
 import org.springframework.stereotype.Repository
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.springframework.data.domain.Pageable
+import org.springframework.data.domain.Page
 
 @Repository
 class AdminUserDataSource: AdminUserRepository {
 
-    override fun findById(id: Long, lock: Boolean): AdminUser =
+    override fun findOneById(id: Long, lock: Boolean): AdminUser =
         AdminUsersTable.select { AdminUsersTable.id eq id }
             .run { if (lock) this.forUpdate() else this }
             .firstOrNull()
             ?.rowToModel()
             ?: throw NotFoundException("AdminUser(id=$id)")
 
-    override fun findAll(limit: Int, offset: Int): List<AdminUser> =
+    override fun findAllByQuery(): List<AdminUser> =
         AdminUsersTable.selectAll()
             .orderBy(AdminUsersTable.createdAt)
-            .limit(limit, offset = offset.toLong() * limit.toLong())
             .map { it.rowToModel() }
+
+    override fun findPageByQuery(pageable: Pageable): List<AdminUser> =
+        AdminUsersTable.selectAll()
+            .orderBy(AdminUsersTable.createdAt)
+            .limit(pageable.pageSize, offset = pageable.offset.toLong())
+            .map { it.rowToModel() }
+
+    override fun existsById(id: Long, lock: Boolean): Boolean =
+        AdminUsersTable.exists()
 
     override fun count(): Int =
         AdminUsersTable.selectAll().count().toInt()
 
-    override fun create(adminUser: AdminUser) {
+    override fun createOne(adminUser: AdminUser) {
         AdminUsersTable.insert {
             it[id] = adminUser.id
             it[name] = adminUser.name.value()
@@ -38,7 +48,7 @@ class AdminUserDataSource: AdminUserRepository {
         }
     }
 
-    override fun update(adminUser: AdminUser) {
+    override fun updateOneById(adminUser: AdminUser) {
         AdminUsersTable.update({ AdminUsersTable.id eq adminUser.id }) {
             it[name] = adminUser.name.value()
             it[email] = adminUser.email.value()
@@ -48,7 +58,7 @@ class AdminUserDataSource: AdminUserRepository {
             ?: throw UpdateFailedException("AdminUser($adminUser.id)")
     }
 
-    override fun delete(adminUser: AdminUser) {
+    override fun deleteOneById(adminUser: AdminUser) {
         AdminUsersTable.deleteWhere { AdminUsersTable.id eq adminUser.id }
             .takeIf { it > 0 }
             ?: throw DeleteFailedException("AdminUser($adminUser.id)")

@@ -5,9 +5,12 @@ import bondagehub.domain.model.postcategory.*
 import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
 import bondagehub.infrastructure.datasource.db.migration.PostCategoriesTable
 import bondagehub.infrastructure.datasource.db.migration.PostTagsTable
+import bondagehub.infrastructure.datasource.db.migration.PostsTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
+import org.springframework.stereotype.Repository
 
+@Repository
 class PostCategoryDataSource: PostCategoryRepository {
 
     override fun findAll(limit: Int, offset: Int): List<PostCategory> =
@@ -16,13 +19,16 @@ class PostCategoryDataSource: PostCategoryRepository {
             .limit(limit, offset = offset.toLong() * limit.toLong())
             .map { it.rowToModel() }
 
+    override fun count(): Int =
+        PostCategoriesTable.selectAll().count().toInt()
+
     private fun ResultRow.rowToModel(): PostCategory =
         PostCategory(
-            this[PostTagsTable.id],
-            this[PostTagsTable.name],
-            this[PostTagsTable.description],
-            this[PostTagsTable.slug],
-            this[AdminUsersTable.createdAt],
-            this[AdminUsersTable.updatedAt]
+            this[PostCategoriesTable.id],
+            this[PostCategoriesTable.name],
+            this[PostCategoriesTable.description],
+            this[PostCategoriesTable.slug],
+            this[PostCategoriesTable.createdAt],
+            this[PostCategoriesTable.updatedAt]
         )
 }

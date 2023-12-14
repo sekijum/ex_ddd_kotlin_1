@@ -8,4 +8,5 @@ import bondagehub.domain.model.member.*
 interface MemberRepository {
 
     fun findAll(limit: Int, offset: Int): List<Member>
+    fun count(): Int
 }
