@@ -8,4 +8,9 @@ class ApplicationController {
     fun root() {
         return
     }
+
+    @GetMapping("/healthcheck")
+    fun healthcheck() {
+        return
+    }
 }

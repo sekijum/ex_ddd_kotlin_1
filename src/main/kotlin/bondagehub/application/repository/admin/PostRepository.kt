@@ -1,12 +1,10 @@
 package bondagehub.application.repository.admin
 
 import bondagehub.domain.model.post.*
+import org.springframework.data.domain.Pageable
 
-/**
- * 投稿を操作するためのリポジトリを表現する。
- */
 interface PostRepository {
 
-    fun findAll(limit: Int, offset: Int): List<Post>
+    fun findPageByQuery(pageable: Pageable): List<Post>
     fun count(): Int
 }

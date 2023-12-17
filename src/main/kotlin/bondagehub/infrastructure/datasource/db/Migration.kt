@@ -33,8 +33,8 @@ class Migration {
             PostImagesTable,
             PostAlbumsTable,
             PostAlbumImagesTable,
-            PostCategoryCategorizationTable,
-            PostTagTaggingTable
+            PostCategorizationTable,
+            PostTaggingTable,
         ).also {
             transaction {
                 SchemaUtils.create(*it)

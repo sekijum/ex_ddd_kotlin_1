@@ -9,28 +9,35 @@ import bondagehub.infrastructure.datasource.db.migration.AttachmentsTable
 @Repository
 class AttachmentDataSource : AttachmentRepository {
 
-    override fun add(attachment: Attachment) {
-        AttachmentsTable.insert {
+    override fun createOne(attachment: Attachment): Attachment {
+         return AttachmentsTable.insert {
             it[bucket] = attachment.bucket
-            it[path] = attachment.path
-            it[fileName] = attachment.fileName
-            it[ext] = attachment.ext
-            it[mimeType] = attachment.mimeType
+            it[key] = attachment.key
+            it[isAttach] = attachment.isAttach.value()
             it[createdAt] = attachment.createdAt
             it[updatedAt] = attachment.updatedAt
         }
+            .resultedValues!!.first()
+             .rowToModel()
+    }
+
+    override fun createAll(attachments: List<Attachment>): List<Attachment> {
+        return AttachmentsTable.batchInsert(attachments) {
+            this[AttachmentsTable.bucket] = it.bucket
+            this[AttachmentsTable.key] = it.key
+            this[AttachmentsTable.isAttach] = it.isAttach.value()
+            this[AttachmentsTable.createdAt] = it.createdAt
+            this[AttachmentsTable.updatedAt] = it.updatedAt
+        }
+            .map { it.rowToModel() }
     }
 
     private fun ResultRow.rowToModel(): Attachment =
         Attachment(
             this[AttachmentsTable.id],
             this[AttachmentsTable.bucket],
-            this[AttachmentsTable.size],
-            this[AttachmentsTable.duration],
-            this[AttachmentsTable.path],
-            this[AttachmentsTable.fileName],
-            this[AttachmentsTable.ext],
-            this[AttachmentsTable.mimeType],
+            this[AttachmentsTable.key],
+            IsAttach(this[AttachmentsTable.isAttach]),
             this[AttachmentsTable.createdAt],
             this[AttachmentsTable.updatedAt]
         )

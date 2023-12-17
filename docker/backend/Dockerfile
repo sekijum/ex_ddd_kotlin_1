@@ -3,7 +3,7 @@ FROM amazoncorretto:17 AS dev
 ENV ROOTPATH /var/www
 WORKDIR $ROOTPATH
 EXPOSE 8080
-CMD ["sh", "./cmd/dev/start.sh"]
+#CMD ["sh", "./cmd/dev/start.sh"]
 
 # Runtime stage
 FROM amazoncorretto:17 AS runtime

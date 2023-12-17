@@ -6,15 +6,16 @@ import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
 import bondagehub.infrastructure.datasource.db.migration.PostTagsTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
 
 @Repository
 class PostTagDataSource: PostTagRepository {
 
-    override fun findAll(limit: Int, offset: Int): List<PostTag> =
+    override fun findPageByQuery(pageable: Pageable): List<PostTag> =
         PostTagsTable.selectAll()
             .orderBy(PostTagsTable.createdAt)
-            .limit(limit, offset = offset.toLong() * limit.toLong())
+            .limit(pageable.pageSize, offset = pageable.offset.toLong())
             .map { it.rowToModel() }
 
     override fun count(): Int =

@@ -3,7 +3,7 @@ package bondagehub.infrastructure.datasource.db.migration
 import bondagehub.domain.model.member.*
 import bondagehub.infrastructure.datasource.db.*
 
-object MembersTable : ExposedTable<Member>("posts") {
+object MembersTable : ExposedTable<Member>("members") {
 
     val id = MembersTable.varchar("id", length = 64)
     val name = MembersTable.varchar("name", length = 64)

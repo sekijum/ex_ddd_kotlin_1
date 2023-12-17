@@ -1,7 +1,6 @@
 package bondagehub.application.service.admin.member.dto
 
 import bondagehub.domain.model.member.*
-import bondagehub.application.service.*
 import org.springframework.stereotype.Component
 
 @Component
@@ -12,9 +11,9 @@ class MemberPresenter {
             member.id.id(),
             member.name.value(),
             member.pass.format(),
+            member.email?.value(),
             member.status.name,
             member.status.label,
-            member.email?.value(),
             member.emailVerifiedAt?.toEpochMilli(),
             member.deletedAt?.toEpochMilli(),
             member.createdAt.toEpochMilli(),
@@ -22,12 +21,12 @@ class MemberPresenter {
         )
     }
 
-    fun toDTO(members: List<Member>, count: Int, limit: Int, offset: Int): PaginationDTO<MemberDTO> {
-        return PaginationDTO(
-            count,
-            limit,
-            offset,
-            members.map { toDTO(it) }
+
+    fun toDTO(members: List<Member>, count: Int): Pair<List<MemberDTO>, Int> {
+        return Pair(
+            members.map { toDTO(it) },
+            count
         )
     }
+
 }

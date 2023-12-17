@@ -3,4 +3,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = "bondagehub-backend"
+rootProject.name = "bondagehub"

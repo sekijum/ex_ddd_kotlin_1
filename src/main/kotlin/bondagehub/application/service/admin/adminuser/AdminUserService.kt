@@ -40,10 +40,10 @@ class AdminUserService(
 
 
     @Transactional(readOnly = true)
-    fun findPageByQuery(pageable: Pageable): Mono<Pair<Int, List<AdminUserDTO>>> = runCatching {
+    fun findPageByQuery(pageable: Pageable): Mono<Pair<List<AdminUserDTO>, Int>> = runCatching {
         return Mono.just(adminUserRepository.count() to adminUserRepository.findPageByQuery(pageable))
             .map { (count, adminUsers) ->
-                Pair(count, adminUsers.map { adminUserPresenter.toDTO(it) })
+                Pair(adminUsers.map { adminUserPresenter.toDTO(it) }, count)
             }
 
     }

@@ -1,7 +1,6 @@
 package bondagehub.application.service.admin.postcategory.dto
 
 import bondagehub.domain.model.postcategory.*
-import bondagehub.application.service.*
 import org.springframework.stereotype.Component
 
 @Component
@@ -18,12 +17,10 @@ class PostCategoryPresenter {
         )
     }
 
-    fun toDTO(postCategories: List<PostCategory>, count: Int, limit: Int, offset: Int): PaginationDTO<PostCategoryDTO> {
-        return PaginationDTO(
-            count,
-            limit,
-            offset,
-            postCategories.map { toDTO(it) }
+    fun toDTO(postCategories: List<PostCategory>, count: Int): Pair<List<PostCategoryDTO>, Int> {
+        return Pair(
+                postCategories.map { toDTO(it) },
+                count
         )
     }
 }

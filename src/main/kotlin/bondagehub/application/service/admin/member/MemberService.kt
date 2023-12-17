@@ -3,9 +3,9 @@ package bondagehub.application.service.admin.member
 import bondagehub.domain.exception.*
 import bondagehub.application.repository.admin.MemberRepository
 import bondagehub.application.service.*
-import bondagehub.application.service.admin.member.command.FindAllMemberCommand
 import bondagehub.application.service.admin.member.dto.MemberDTO
 import bondagehub.application.service.admin.member.dto.MemberPresenter
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Mono
@@ -17,15 +17,10 @@ class MemberService(
 ) {
 
     @Transactional(readOnly = true)
-     fun findAll(command: FindAllMemberCommand): Mono<PaginationDTO<MemberDTO>> = runCatching {
-        return Mono.just(memberRepository.count() to memberRepository.findAll(command.limit, command.offset))
+     fun findPageByQuery(pageable: Pageable): Mono<Pair<List<MemberDTO>, Int>> = runCatching {
+         Mono.just(memberRepository.count() to memberRepository.findPageByQuery(pageable))
             .map { (count, members) ->
-                memberPresenter.toDTO(
-                    members,
-                    count,
-                    command.limit,
-                    command.offset
-                )
+                memberPresenter.toDTO(members, count)
             }
     }
         .getOrElse { Mono.error(it.error()) }

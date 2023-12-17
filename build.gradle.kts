@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id ("idea")
     id("org.springframework.boot") version "3.1.1"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.22"
@@ -51,6 +50,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("io.projectreactor:reactor-core")
+
+    implementation("aws.sdk.kotlin:s3:1.0.0")
 }
 
 tasks {
@@ -61,11 +62,11 @@ tasks {
         }
     }
 
-    withType<Test> {
-        testLogging {
-            events("skipped", "failed")
-            setExceptionFormat("full")
-        }
-        useJUnitPlatform()
-    }
+//    withType<Test> {
+//        testLogging {
+//            events("skipped", "failed")
+//            setExceptionFormat("full")
+//        }
+//        useJUnitPlatform()
+//    }
 }

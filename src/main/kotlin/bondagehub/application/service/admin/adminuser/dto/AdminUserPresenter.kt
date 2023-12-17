@@ -1,7 +1,6 @@
 package bondagehub.application.service.admin.adminuser.dto
 
 import bondagehub.domain.model.adminuser.*
-import bondagehub.application.service.*
 import org.springframework.stereotype.Component
 
 @Component
@@ -25,12 +24,4 @@ class AdminUserPresenter {
         )
     }
 
-    fun toDTO(adminUsers: List<AdminUser>, count: Int, limit: Int, offset: Int): PaginationDTO<AdminUserDTO> {
-        return PaginationDTO(
-            count,
-            limit,
-            offset,
-            adminUsers.map { toDTO(it) }
-        )
-    }
 }

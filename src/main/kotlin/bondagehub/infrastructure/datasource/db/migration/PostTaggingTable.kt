@@ -2,7 +2,7 @@ package bondagehub.infrastructure.datasource.db.migration
 
 import org.jetbrains.exposed.sql.Table
 
-object PostTagTaggingTable : Table("post_tag_tagging") {
+object PostTaggingTable : Table("post_tagging") {
 
     val id = long("id").autoIncrement()
     val postId = reference("post_id", PostsTable.id)

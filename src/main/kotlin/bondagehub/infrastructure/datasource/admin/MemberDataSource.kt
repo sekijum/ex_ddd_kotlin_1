@@ -5,17 +5,18 @@ import bondagehub.domain.model.member.*
 import bondagehub.infrastructure.datasource.db.migration.*
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
 
 @Repository
 class MemberDataSource: MemberRepository {
 
-    override fun findAll(limit: Int, offset: Int): List<Member> =
+    override fun findPageByQuery(pageable: Pageable): List<Member> =
          MembersTable.leftJoin(PostsTable)
              .slice(MembersTable.columns)
             .selectAll()
             .orderBy(MembersTable.createdAt)
-            .limit(limit, offset = offset.toLong() * limit.toLong())
+            .limit(pageable.pageSize, offset = pageable.offset.toLong())
             .groupBy(PostsTable.id)
             .map { it.rowToModel() }
 

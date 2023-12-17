@@ -35,19 +35,22 @@ class AdminUserController(private val adminUserService: AdminUserService) {
     @GetMapping("")
     fun findAllByQuery(
         @ModelAttribute request: AdminUserFindAllRequest
-    ): ResponseEntity<Mono<List<AdminUserResponse>>> {
-        return ResponseEntity.ok(adminUserService.findAllByQuery()
+    ): Mono<List<AdminUserResponse>> {
+        return adminUserService.findAllByQuery()
             .map { listDTO -> listDTO.map { it.toResponse() } }
-        )
+
     }
 
     @ApiOperation("ページネーション付きのすべての管理者を取得する")
     @GetMapping("/paginate")
-    fun findPageByQuery(pageable: Pageable): ResponseEntity<Mono<Page<AdminUserResponse>>> {
-        return ResponseEntity.ok(adminUserService.findPageByQuery(pageable)
-            .map { (count, listDTO) -> Pair(count, listDTO.map { it.toResponse() }) }
-            .map { PageableExecutionUtils.getPage(it.second, pageable, LongSupplier { it.first.toLong() }) }
-        )
+    fun findPageByQuery(pageable: Pageable): Mono<Page<AdminUserResponse>> {
+        return adminUserService.findPageByQuery(pageable)
+            .map { (dtos, count) -> Pair(dtos.map { it.toResponse() }, count) }
+            .map { PageableExecutionUtils.getPage(
+                it.first,
+                pageable,
+                LongSupplier { it.second.toLong() })
+            }
     }
 
     @ApiOperation("管理者を作成する")
@@ -92,6 +95,5 @@ class AdminUserController(private val adminUserService: AdminUserService) {
             .map { it.toResponse() }
     }
 
-    private fun AdminUserDTO.toResponse() =
-        AdminUserResponse.from(this)
+    private fun AdminUserDTO.toResponse() = AdminUserResponse.from(this)
 }
