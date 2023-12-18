@@ -1,6 +1,6 @@
 package bondagehub.application.repository.admin
 
-import bondagehub.domain.model.postcategory.*
+import bondagehub.domain.model.post_category.*
 import org.springframework.data.domain.Pageable
 
 interface PostCategoryRepository {

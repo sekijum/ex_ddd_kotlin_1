@@ -13,7 +13,7 @@ class MemberDetail(
     val id: Long, // 主キー
     val memberId: MemberId, // 会員ID
     val birthday: Instant? = null, // 生年月日
-    val gender: Gender, // 性別
+    val gender: Gender?, // 性別
     val iconId: Long? = null, // アイコンID
     val displayName: String? = null, // 表示名
     val createdAt: Instant, // 作成日時
@@ -27,13 +27,13 @@ class MemberDetail(
         fun create(
             memberId: MemberId,
             birthday: Instant? = null,
-            gender: Gender,
+            gender: Gender? = null,
             iconId: Long? = null,
             displayName: String? = null,
         ): MemberDetail = with(Instant.now()) {
             MemberDetail(
                 id = 0,
-                memberId = memberId,
+                memberId,
                 birthday,
                 gender,
                 iconId,

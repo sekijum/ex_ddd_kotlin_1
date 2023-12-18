@@ -4,7 +4,7 @@ import bondagehub.domain.model.attachment.*
 import bondagehub.application.repository.AttachmentRepository
 import org.jetbrains.exposed.sql.*
 import org.springframework.stereotype.Repository
-import bondagehub.infrastructure.datasource.db.migration.AttachmentsTable
+import bondagehub.common.database.table.*
 
 @Repository
 class AttachmentDataSource : AttachmentRepository {

@@ -3,9 +3,7 @@ package bondagehub.infrastructure.datasource.admin
 import bondagehub.application.repository.admin.PostRepository
 import bondagehub.domain.model.member.MemberId
 import bondagehub.domain.model.post.*
-import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
-import bondagehub.infrastructure.datasource.db.migration.PostTagsTable
-import bondagehub.infrastructure.datasource.db.migration.PostsTable
+import bondagehub.common.database.table.*
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
 import org.springframework.data.domain.Pageable

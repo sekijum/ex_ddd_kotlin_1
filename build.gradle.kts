@@ -26,6 +26,7 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework:spring-tx")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
 
     // sqlDependencies
     implementation("org.jetbrains.exposed:exposed-core:0.40.1")
@@ -48,9 +49,13 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.7")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.7")
 
+    // flywayDependencies
+    implementation("org.flywaydb:flyway-core:9.8.1")
+
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("io.projectreactor:reactor-core")
 
+    // aws sdk
     implementation("aws.sdk.kotlin:s3:1.0.0")
 }
 

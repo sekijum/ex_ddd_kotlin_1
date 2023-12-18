@@ -1,6 +1,6 @@
 package bondagehub.application.repository.admin
 
-import bondagehub.domain.model.adminuser.*
+import bondagehub.domain.model.admin_user.*
 import org.springframework.data.domain.Pageable
 
 /**

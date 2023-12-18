@@ -1,11 +1,8 @@
 spring:
+  profiles:
+    active: local
   main:
     lazy-initialization: false
-#  devtools:
-#    livereload:
-#      enabled: true
-#    restart:
-#      enabled: true
   datasource:
     url: jdbc:h2:mem:bondagehub;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: Ninja

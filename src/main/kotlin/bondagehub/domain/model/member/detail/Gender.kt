@@ -3,7 +3,7 @@ package bondagehub.domain.model.member.detail
 import bondagehub.domain.exception.InvalidRequestException
 import bondagehub.domain.model.member.MemberStatus
 
-enum class Gender(private val gender: Int) {
+enum class Gender(val gender: Int) {
 
     /**
      * 男性
@@ -13,12 +13,7 @@ enum class Gender(private val gender: Int) {
     /**
      * 女性
      */
-    Female(2),
-
-    /**
-     * 未回答(デフォルト)
-     */
-    Unanswered(3);
+    Female(2);
 
 
     companion object {
@@ -27,6 +22,6 @@ enum class Gender(private val gender: Int) {
             ?: throw InvalidRequestException("無効な性別です。")
 
         operator fun invoke(type: String) = Gender.values().find { it.name == type }
-            ?: throw InvalidRequestException("無効なステータスです。")
+            ?: throw InvalidRequestException("無効な性別です。")
     }
 }

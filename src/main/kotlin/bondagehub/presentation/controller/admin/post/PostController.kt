@@ -1,9 +1,7 @@
 package bondagehub.presentation.controller.admin.post
 
-import bondagehub.application.service.admin.adminuser.dto.AdminUserDTO
 import bondagehub.application.service.admin.post.PostService
 import bondagehub.application.service.admin.post.dto.PostDTO
-import bondagehub.presentation.controller.admin.adminuser.resource.AdminUserResponse
 import bondagehub.presentation.controller.admin.post.resource.PostResponse
 import io.swagger.annotations.*
 import org.springframework.data.domain.Page

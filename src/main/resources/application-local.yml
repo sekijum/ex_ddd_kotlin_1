@@ -1,0 +1,25 @@
+spring:
+  main:
+    lazy-initialization: false
+  datasource:
+    url: jdbc:h2:mem:bondagehub;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: Ninja
+    password: Ninja01
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        web-allow-others: true
+  exposed:
+    generate-ddl: true
+    show-sql: true
+server:
+  port: 8080
+  shutdown: graceful
+logging:
+  level:
+    Exposed: INFO
+    web: DEBUG
+    root: INFO

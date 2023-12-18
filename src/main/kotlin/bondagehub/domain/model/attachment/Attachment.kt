@@ -1,9 +1,6 @@
 package bondagehub.domain.model.attachment
 
-import bondagehub.domain.model.adminuser.Pass
-import org.apache.juli.logging.Log
 import java.time.Instant
-import org.springframework.util.MimeTypeUtils;
 
 class Attachment(
     val id: Long, // 主キー

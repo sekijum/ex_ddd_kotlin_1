@@ -1,11 +1,11 @@
 package bondagehub.presentation.controller.attachment
 
-import bondagehub.application.service.admin.adminuser.*
-import bondagehub.application.service.admin.adminuser.command.*
-import bondagehub.application.service.admin.adminuser.dto.*
+import bondagehub.application.service.admin.admin_user.*
+import bondagehub.application.service.admin.admin_user.command.*
+import bondagehub.application.service.admin.admin_user.dto.*
 import bondagehub.application.shared.attachment.AttachmentService
 import bondagehub.application.shared.attachment.command.GetS3PresignedUrlsForUploadCommand
-import bondagehub.presentation.controller.admin.adminuser.resource.*
+import bondagehub.presentation.controller.admin.admin_user.resource.*
 import bondagehub.presentation.controller.attachment.resource.GetS3PresignedUrlsForUploadRequest
 import bondagehub.presentation.controller.attachment.resource.GetS3PresignedUrlsForUploadResponse
 import io.swagger.annotations.*

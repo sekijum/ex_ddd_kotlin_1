@@ -1,6 +1,6 @@
 package bondagehub.application.repository.admin
 
-import bondagehub.domain.model.posttag.*
+import bondagehub.domain.model.post_tag.*
 import org.springframework.data.domain.Pageable
 
 interface PostTagRepository {

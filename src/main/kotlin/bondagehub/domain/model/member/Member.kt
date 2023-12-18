@@ -20,7 +20,7 @@ class Member(
     val createdAt: Instant, // 登録日時
     val updatedAt: Instant, // 更新日時
 
-    val memberDetail: MemberDetail? = null,
+    val detail: MemberDetail? = null,
     val posts: List<Post>? = ArrayList<Post>(),
 ): Entity<Member> {
 
@@ -90,7 +90,7 @@ class Member(
                 pass,
                 status = MemberStatus.Active,
                 email = email,
-                memberDetail = memberDetail,
+                detail = memberDetail,
                 createdAt = this,
                 updatedAt = this
             )

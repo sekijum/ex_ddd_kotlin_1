@@ -1,14 +1,13 @@
 package bondagehub.infrastructure.datasource.admin
 
-import bondagehub.domain.model.adminuser.*
-import bondagehub.infrastructure.datasource.db.migration.AdminUsersTable
+import bondagehub.domain.model.admin_user.*
 import bondagehub.application.repository.admin.*
+import bondagehub.common.database.table.*
 import bondagehub.domain.exception.*
 import org.jetbrains.exposed.sql.*
 import org.springframework.stereotype.Repository
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.springframework.data.domain.Pageable
-import org.springframework.data.domain.Page
 
 @Repository
 class AdminUserDataSource: AdminUserRepository {
